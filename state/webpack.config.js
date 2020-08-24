@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 const ENTRY_MAP = {
   'hello-world': '0-hello_world',
   'stateless-table': '1-stateless_table',
+  'sort-table': '2-sort_table',
 };
 
 const config = {

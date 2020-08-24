@@ -1,21 +1,26 @@
 import React from 'react';
-import { PlayerData } from '../player-data';
+import { IndividualPlayer } from '../player-data';
 
 type PlayerTableProps = {
-  columns: Array<string>,
-  data: PlayerData,
+  columns: ReadonlyArray<string>,
+  data: ReadonlyArray<IndividualPlayer>,
+  onColumnClick?: (any) => void,
 };
 
-const PlayerTable = ({ columns, data }: PlayerTableProps) => (
+const PlayerTable = ({ columns, data, onColumnClick }: PlayerTableProps) => (
   <table>
     <thead>
     <tr>
-      {columns.map((name, idx) => <th key={idx}>{name}</th>)}
+      {columns.map((name, idx) => (
+        <th onClick={onColumnClick} key={idx} data-name={name}>
+          {name}
+        </th>
+      ))}
     </tr>
     </thead>
     <tbody>
     {data.map((player, idx) => (
-      <tr key={`player-${idx}`}>
+      <tr key={player.id}>
         {columns.map((header, headerIdx) => (
           <td key={`entry-${idx}-${headerIdx}`}>
             {player[header]}
