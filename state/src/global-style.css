@@ -1,4 +1,20 @@
 html, body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.cork-container {
+  display: flex;
+  flex-grow: 1;
+}
+
+.cork-board {
+  position: relative;
+  flex-grow: 1;
 }

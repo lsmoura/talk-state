@@ -60,7 +60,7 @@ const CorkBoard = ({
 
   return (
     <React.Fragment>
-      <div>
+      <div className={'cork-board'}>
         {notes.map(note =>
           <NoteComponent
             key={note.id}
