@@ -14,6 +14,7 @@ const ENTRY_MAP = {
   'stateless-table': '1-stateless_table',
   'sort-table': '2-sort_table',
   'cork-board': '3-cork_board',
+  'improved-board': '4-improved_cork_board',
 };
 
 const config = {
