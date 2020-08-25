@@ -11,9 +11,11 @@ export type NoteType = {
 type NoteProps = {
   note: NoteType,
   updateNote?: (NoteType) => void,
+  startEditing?: (event) => void,
+  deleteNote?: (event) => void,
 };
 
-const Note = ({ note, updateNote }: NoteProps) => {
+const Note = ({ note, updateNote, startEditing, deleteNote }: NoteProps) => {
   const { id, x, y, contents, color = 'yellow' } = note;
   const [position, setPosition] = useState<{ x: number, y: number }>({ x, y });
   const [isMoving, setIsMoving] = useState(false);
@@ -61,7 +63,19 @@ const Note = ({ note, updateNote }: NoteProps) => {
       padding: '1em 0.2em 0.2em 0.2em',
       position: 'absolute',
       top: position.y,
-    }}>{contents}</div>
+    }}>
+      <div>{contents}</div>
+      <div>
+        {startEditing
+          ? <button onClick={startEditing} data-noteid={note.id}>edit</button>
+          : null
+        }
+        {deleteNote
+          ? <button onClick={deleteNote} data-noteid={note.id}>delete</button>
+          : null
+        }
+      </div>
+    </div>
   );
 };
 
