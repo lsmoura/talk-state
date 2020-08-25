@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const PRODUCTION = process.env.NODE_ENV === 'production';
 const PORT = process.env.PORT || 3000;
@@ -59,15 +60,15 @@ const config = {
     new ExtractCssChunks({
       filename: '[name].[hash:8].css',
     }),
-  ].concat(
-    Object.keys(ENTRY_MAP).map(
-      key => new HtmlWebpackPlugin({
-        chunks: [key],
-        filename: `${key}.html`,
-        minify: PRODUCTION,
-      }),
-    ),
-  ),
+    !PRODUCTION ? new ReactRefreshWebpackPlugin() : null,
+  ].concat(Object.keys(ENTRY_MAP).map(
+    key => new HtmlWebpackPlugin({
+      chunks: [key],
+      filename: `${key}.html`,
+      minify: PRODUCTION,
+    }),
+    ))
+    .filter(Boolean),
   optimization: {
     splitChunks: {
       cacheGroups: {
