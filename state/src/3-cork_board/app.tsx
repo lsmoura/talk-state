@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import useCorkState from './useCorkState';
-import Note from './Note';
-import CorkBoard from './CorkBoard';
+import useCorkState from '../components/CorkBoard/useCorkState';
+import Note from '../components/CorkBoard/Note';
+import CorkBoard from '../components/CorkBoard';
 
 const App = () => {
   const { board, includeNote, updateNote, deleteNote } = useCorkState();

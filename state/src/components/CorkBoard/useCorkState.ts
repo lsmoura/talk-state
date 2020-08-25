@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import randomString from '../randomString';
+import randomString from '../../randomString';
 import { NoteType } from './Note';
 
 type useCorkStateReturnType = {
