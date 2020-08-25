@@ -47,7 +47,7 @@ const config = {
               hmr: !PRODUCTION,
             },
           },
-          'css-loader'
+          'css-loader',
         ],
       },
     ],
@@ -68,6 +68,17 @@ const config = {
       }),
     ),
   ),
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        react: {
+          chunks: 'all',
+          name: 'react',
+          test: /[\\/]react(-dom)?[\\/]/,
+        },
+      },
+    },
+  },
   devServer: {
     contentBase: './dist',
     historyApiFallback: true,
