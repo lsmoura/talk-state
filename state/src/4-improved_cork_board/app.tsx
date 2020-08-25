@@ -19,8 +19,11 @@ const App = () => {
 
   return (
     <div className={'app-root'}>
-      <div>
-        <button onClick={includeNote}>new note</button>
+      <div
+        className={'add-button'}
+        onClick={includeNote}
+      >
+        +
       </div>
       <div>
         <label htmlFor={'use-with-memo'}>use React.memo</label>

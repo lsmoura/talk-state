@@ -18,3 +18,16 @@ html, body {
   position: relative;
   flex-grow: 1;
 }
+
+.add-button {
+  border: 1px solid red;
+  background: red;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  color: white;
+  font-size: 28px;
+  border-radius: 40px;
+  padding: 4px;
+  cursor: pointer;
+}
