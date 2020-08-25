@@ -12,6 +12,7 @@ const ENTRY_MAP = {
   'hello-world': '0-hello_world',
   'stateless-table': '1-stateless_table',
   'sort-table': '2-sort_table',
+  'cork-board': '3-cork_board',
 };
 
 const config = {
