@@ -2,7 +2,13 @@ import { useCallback, useState } from 'react';
 import randomString from '../randomString';
 import { NoteType } from './Note';
 
-const useCorkState = () => {
+type useCorkStateReturnType = {
+  updateNote: (info: NoteType) => void,
+  deleteNote: (noteId) => void,
+  includeNote: () => void,
+  board: ReadonlyArray<NoteType>,
+}
+const useCorkState = (): useCorkStateReturnType => {
   const [board, setBoard] = useState<Array<NoteType>>([]);
 
   const includeNote = useCallback(() => {

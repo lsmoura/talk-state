@@ -1,12 +1,11 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import useCorkState from './useCorkState';
-import Note, { NoteType } from './Note';
-import EditNoteModal from './EditNoteModal';
+import Note from './Note';
+import CorkBoard from './CorkBoard';
 
 const App = () => {
   const { board, includeNote, updateNote, deleteNote } = useCorkState();
   const [withMemo, setWithMemo] = useState<boolean>(false);
-  const [editNoteId, setEditNoteId] = useState<string | void>(null);
 
   const handleMemoEvent = useCallback((event) => {
     setWithMemo(event.target.checked);
@@ -15,40 +14,6 @@ const App = () => {
   const NoteComponent = useMemo(
     () => withMemo ? React.memo(Note) : Note,
     [withMemo],
-  );
-
-  const handleStartEditing = useCallback((event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    const noteId = event.target.getAttribute('data-noteid');
-    if (!board.find(e => e.id === noteId)) {
-      console.warn('cannot edit: note not found', noteId);
-      return;
-    }
-
-    setEditNoteId(noteId);
-  }, [setEditNoteId, board]);
-  const handleDeleteNote = useCallback(
-    (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      const noteId = event.target.getAttribute('data-noteid');
-
-      deleteNote(noteId);
-    },
-    [deleteNote],
-  );
-  const onEditNote = useCallback(
-    (note: NoteType) => {
-      const data = {
-        id: editNoteId,
-        ...note,
-      };
-
-      updateNote(data);
-      setEditNoteId(null);
-    },
-    [editNoteId, updateNote, setEditNoteId],
   );
 
   return (
@@ -66,24 +31,12 @@ const App = () => {
           onChange={handleMemoEvent}
         />
       </div>
-      {board.map(note =>
-        <NoteComponent
-          key={note.id}
-          note={note}
-          updateNote={updateNote}
-          startEditing={handleStartEditing}
-          deleteNote={handleDeleteNote}
-        />)
-      }
-      {editNoteId
-        ? <EditNoteModal
-          note={board.find(e => e.id === editNoteId)}
-          onUpdate={onEditNote}
-          onClose={() => {
-            setEditNoteId(null);
-          }}
-        /> : null
-      }
+      <CorkBoard
+        NoteComponent={NoteComponent}
+        notes={board}
+        updateNote={updateNote}
+        deleteNote={deleteNote}
+      />
     </div>
   );
 };
