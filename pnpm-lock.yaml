@@ -20,6 +20,7 @@ dependencies:
   webpack-manifest-plugin: 2.2.0_webpack@4.44.1
 devDependencies:
   '@babel/eslint-parser': 7.11.4_@babel+core@7.11.4+eslint@7.7.0
+  '@lsmoura/danger-plugin-eslint': 0.0.1
   '@types/react': 16.9.46
   '@types/react-dom': 16.9.8
   '@typescript-eslint/eslint-plugin': 3.10.1_4b08f58ef8a3bb8fcbaebc4f1e3f8004
@@ -1110,6 +1111,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-O53yME4ZZI0jO1EVGtF1ePGl0LHirG4P1ibcD80XyzZcKhcMFeCXmh4Xb1ifGBIV233Qg12x4rBfQgA+tmOukA==
+  /@lsmoura/danger-plugin-eslint/0.0.1:
+    dev: true
+    resolution:
+      integrity: sha512-V1wXlGnxzCW2pk2hVSEtFmmr4yNLxFWrlLFR+C8C8yIxbmi+Q9oW1V19xPd6K4+F8y6bgcuIU1SNPy/Sr5csag==
   /@octokit/auth-token/2.4.2:
     dependencies:
       '@octokit/types': 5.4.1
@@ -7270,6 +7275,7 @@ specifiers:
   '@babel/preset-env': ^7.11.0
   '@babel/preset-react': ^7.10.4
   '@babel/preset-typescript': ^7.10.4
+  '@lsmoura/danger-plugin-eslint': ^0.0.1
   '@pmmmwh/react-refresh-webpack-plugin': ^0.4.1
   '@types/react': ^16.9.46
   '@types/react-dom': ^16.9.8
