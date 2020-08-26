@@ -1,0 +1,25 @@
+name: Node CI
+on:
+  - pull_request
+
+jobs:
+  danger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: install pnpm
+        run: npm install -g pnpm
+      - name: pnpm install
+        continue-on-error: true
+        run: pnpm install --frozen-lockfile
+      - name: linting
+        continue-on-error: true
+        run: pnpm run lint -- --output-file eslint-result.json --format json --no-color
+      - name: Danger
+        run: pnpm run danger ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
